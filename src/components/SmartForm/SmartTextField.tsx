@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 
 type SmartTextFieldPropsT = SmartFormChildPropsT & {
   name: string;
-  fieldProps?: TextFieldProps;
+  fieldProps?: Omit<TextFieldProps, "name">;
 };
 
 const SmartTextField: FC<SmartTextFieldPropsT> = ({

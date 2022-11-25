@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { z, ZodObject } from "zod";
 import { UseFormProps } from "react-hook-form/dist/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UseControllerProps, useForm } from "react-hook-form";
+import { UseControllerProps, useForm, FormProvider } from "react-hook-form";
 
 type SmartFormChildPropsT = {
   controllerProps: Omit<UseControllerProps<any>, "name">;
@@ -27,6 +27,8 @@ const SmartForm: FC<SmartFormPropsT> = ({
   };
   const methods = useForm<z.infer<typeof schema>>(userFormDefaults);
   const { handleSubmit, control } = methods;
+
+  console.log(children);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
