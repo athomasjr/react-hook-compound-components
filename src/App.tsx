@@ -18,7 +18,7 @@ const schema = z
 type LoginForm = z.infer<typeof schema>;
 
 function App() {
-  const [methods] = useSmartForm<LoginForm>({
+  const { methods, getSmartFormProps } = useSmartForm<LoginForm>({
     schema,
     useFormProps: {
       defaultValues: {
@@ -44,7 +44,11 @@ function App() {
       alignItems="center"
       sx={{ height: "100vh" }}
     >
-      <SmartFormWithHook methods={methods} onSubmit={submitHandler}>
+      <SmartFormWithHook
+        {...getSmartFormProps({
+          onSubmit: submitHandler,
+        })}
+      >
         {(props) => (
           <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <FormGroup sx={{ gap: "16px" }}>
@@ -81,34 +85,6 @@ function App() {
           </Box>
         )}
       </SmartFormWithHook>
-      {/*<SmartForm*/}
-      {/*  useFormProps={{*/}
-      {/*    defaultValues: {*/}
-      {/*      username: "",*/}
-      {/*      password: "",*/}
-      {/*    },*/}
-      {/*  }}*/}
-      {/*  schema={schema}*/}
-      {/*  onSubmit={submitHandler}*/}
-      {/*>*/}
-      {/*  {(props) => (*/}
-      {/*    <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>*/}
-      {/*      <FormGroup sx={{ gap: "16px" }}>*/}
-      {/*        <FormGroup>*/}
-      {/*          <FormLabel>Username</FormLabel>*/}
-      {/*          <SmartTextField name="username" {...props} />*/}
-      {/*        </FormGroup>*/}
-      {/*        <FormGroup>*/}
-      {/*          <FormLabel>Password</FormLabel>*/}
-      {/*          <SmartTextField name="password" {...props} />*/}
-      {/*        </FormGroup>*/}
-      {/*      </FormGroup>*/}
-      {/*      <Button variant="contained" type="submit">*/}
-      {/*        Submit*/}
-      {/*      </Button>*/}
-      {/*    </Box>*/}
-      {/*  )}*/}
-      {/*</SmartForm>*/}
     </Grid>
   );
 }

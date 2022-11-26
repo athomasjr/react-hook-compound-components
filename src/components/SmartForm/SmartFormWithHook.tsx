@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { UseFormReturn } from "react-hook-form/dist/types";
-import { UseControllerProps } from "react-hook-form";
+import type { UseControllerProps, UseFormReturn } from "react-hook-form";
 
 type SmartFormChildPropsT = {
   controllerProps: Omit<UseControllerProps<any>, "name">;
